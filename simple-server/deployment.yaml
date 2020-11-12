@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: simpleserver
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: simpleserver
+  template:
+    metadata:
+      labels:
+        app: simpleserver
+    spec:
+      containers:
+      - name: simpleserver-app
+        image: gcr.io/simple-server-295312/simpleserver
+        ports:
+        - containerPort: 3000
+        env:
+          - name: PORT
+            value: "3000"
